@@ -1,0 +1,59 @@
+.context-area {
+  height: 100%;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cell-with-lock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cell-with-percent {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  margin-right: 10px;
+  font-size: 11px;
+
+  &__value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.menu-items {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  padding: 10px 24px;
+}
+
+.cell-with-percent__comment {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-right: 12px solid var(--accent-color);
+  border-bottom: 12px solid transparent;
+  cursor: pointer;
+}
+
+.notification-spinner {
+  position: absolute;
+  right: 4px;
+  top: -10px;
+}
+
+.menu-items-container {
+  padding: 0.571em 1em;
+  border: 1px solid var(--light-gray-color);
+}
+
+.percent-value {
+  color: var(--neutral-color);
+}
+
+.cell-with-percent-and-lock {
+  display: flex;
+  justify-content: flex-start;
+}

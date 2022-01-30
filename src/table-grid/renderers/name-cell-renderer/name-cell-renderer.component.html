@@ -1,0 +1,17 @@
+<div *ngIf="!params.data?.loading; else loadingTmp">
+  <div class="context-area">
+<!--  <i *ngIf="params?.next_level && params.value !== 'Все'; else noIconTmp"-->
+    <i *ngIf="params.value !== 'Все'; else noIconTmp"
+     nz-icon
+     [nzType]="params?.open ? 'down' : 'right'"
+     nzTheme="outline"
+     class="arrow"></i>
+  <p class="name">{{params.value}}</p>
+</div>
+</div>
+
+<ng-template #loadingTmp><i nz-icon nzType="loading" class="loading"></i></ng-template>
+
+<ng-template #noIconTmp>
+  <div style="width: 30px"></div>
+</ng-template>

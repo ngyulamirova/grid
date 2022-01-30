@@ -1,0 +1,73 @@
+<div *ngIf="!params.data?.loading" style="height: 100%">
+  <div class="context-area"
+       [attr.closeMenu]="closeMenu | closeMenuPipe : params?.context?.selectedCells"
+       (contextmenu)="contextMenu($event, menu)">
+    <ng-container *ngIf="params.valueProps?.parameters && params.valueProps?.parameters[params.context.metrics]?.available_actions.length">
+      <nz-spin *ngIf="params.valueProps.notificationSpinner; else commentTMP" nzSimple [nzIndicator]="indicatorTemplate" class="notification-spinner"></nz-spin>
+    </ng-container>
+    <div  class="cell-with-lock">
+      <div class="cell-with-percent">
+        <div class="cell-with-percent__value"
+             [style.Color]="params.valueProps">
+          <span *ngIf="params.value || params.value === 0 else nullTmp">{{+params.value | number: '1.0-2': 'ru'}}</span></div>
+        <div class="cell-with-percent-and-lock">
+          <span *ngIf="params.additionalValue || params.additionalValue === 0" class="percent-value">{{params.additionalValue}}%</span>
+          <span *ngIf="params.additionalValue === null" class="percent-value">-</span>
+          <i  nz-icon nzType="down" nzTheme="outline" *ngIf="params.valueProps?.parameters && params.valueProps?.parameters[params.context.metrics]?.fixed_status === fixActions.fixed" size="sm" icon="icon-lock" style="margin: auto 0 auto 6px"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu class="menu-items-container">
+      <li *ngIf="showInMenu[menuActions.approve]" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.change, actions.approved)">
+<!--        <i  nz-icon style="color: #4BCE6E;" size="sm" icon="icon-circle-check"></i>-->
+        Согласовать
+      </li>
+      <li *ngIf="showInMenu[menuActions.reject]" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.change, actions.rejected)">
+<!--        <app-icon style="color: #EE3651;" size="sm" icon="icon-circle-minus"></app-icon>-->
+        Отклонить
+      </li>
+    <ng-container *ngIf="showInMenu[menuActions.correct]">
+      <li *ngIf="params?.context?.selectedCells?.elements.length" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.valueChange, actionTypes.valueChange)">
+<!--        <app-icon size="sm" icon="icon-edit"></app-icon>-->
+        Изменить значение
+      </li>
+
+      <li nz-menu-item class="menu-items" (click)="selectOption(actionTypes.valueChange, actionTypes.relativelyCellsChange)">
+        <span>%</span> Относительное изменение
+      </li>
+    </ng-container>
+      <li *ngIf="showInMenu[menuActions.fix]" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.lock, true)">
+<!--          <app-icon size="sm" icon="icon-lock"></app-icon>-->
+        Зафиксировать
+      </li>
+      <li *ngIf="showInMenu[menuActions.undoFix]" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.lock, false)">
+<!--          <app-icon size="sm" icon="icon-unlock"></app-icon> -->
+        Разблокировать
+      </li>
+      <li *ngIf="showInMenu[menuActions.clear]" nz-menu-item class="menu-items" (click)="selectOption(actionTypes.undo)">
+<!--        <app-icon size="sm" icon="icon-discharge"></app-icon>-->
+        Сбросить
+      </li>
+      <li *ngIf="showInMenu[menuActions.comment]"
+          nz-menu-item class="menu-items" (click)="selectOption(actionTypes.notification, actionTypes.notification)">
+<!--        <app-icon size="sm" icon="icon-listincircle"></app-icon>-->
+        Примечание
+      </li>
+    <li *ngIf="showInMenu[menuActions.uncomment]"
+        nz-menu-item class="menu-items" (click)="selectOption(actionTypes.delNotification, actionTypes.delNotification)">
+<!--      <app-icon size="sm" icon="icon-remove"></app-icon>-->
+      Удалить примечание
+    </li>
+  </ul>
+</nz-dropdown-menu>
+
+<ng-template #indicatorTemplate><i nz-icon nzType="loading"></i></ng-template>
+
+<ng-template #commentTMP><div *ngIf="params.valueProps.comment" class="cell-with-percent__comment"
+                      nz-popover nzPopoverPlacement="rightTop"
+                      [nzPopoverTitle]="params.valueProps.comment"></div></ng-template>
+<ng-template #nullTmp>-</ng-template>

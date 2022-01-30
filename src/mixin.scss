@@ -1,0 +1,134 @@
+//$ci-primary: #3D6CC1;
+$ci-primary: #3179E6;
+//3D6CC1 ci-blue
+$ci-white: #fff;
+$ci-red: #D81A43;
+$def-borders: #d8d8d8;
+$input-border-radius: 2px;
+
+$mini-input-height: 22px;
+$mini-input-font-size: 12px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  -ms-box-shadow: $params;
+  box-shadow: $params;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+}
+
+
+@mixin border-radius-tl($radius) {
+  -webkit-border-top-left-radius: $radius !important;
+  -moz-border-top-left-radius: $radius !important;
+  -ms-border-top-left-radius: $radius !important;
+  border-top-left-radius: $radius !important;
+}
+
+@mixin border-radius-tr($radius) {
+  -webkit-border-top-right-radius: $radius !important;
+  -moz-border-top-right-radius: $radius !important;
+  -ms-border-top-right-radius: $radius !important;
+  border-top-right-radius: $radius !important;
+}
+
+@mixin border-radius-br($radius) {
+  -webkit-border-bottom-right-radius: $radius !important;
+  -moz-border-bottom-right-radius: $radius !important;
+  -ms-border-bottom-right-radius: $radius !important;
+  border-bottom-right-radius: $radius !important;
+}
+
+@mixin border-radius-bl($radius) {
+  -webkit-border-bottom-left-radius: $radius !important;
+  -moz-border-bottom-left-radius: $radius !important;
+  -ms-border-bottom-left-radius: $radius !important;
+  border-bottom-left-radius: $radius !important;
+}
+
+@mixin gradient($a, $b) {
+  background: -moz-linear-gradient(top, $a 0%, $b 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $a), color-stop(100%, $b));
+  background: -webkit-linear-gradient(top, $a 0%, $b 100%);
+  background: -o-linear-gradient(top, $a 0%, $b 100%);
+  background: -ms-linear-gradient(top, $a 0%, $b 100%);
+  background: linear-gradient(to top, $a 0%, $b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$a', endColorstr='$b', GradientType=0);
+}
+
+.color-1 {
+  background: var(--light-red-color);
+  @include gradient(#DFDFDF, #B8B8B8);
+}
+
+.color-2 {
+  background: var(--blue-color);
+  @include gradient(#3d6cc1, #6B3DC1);
+}
+
+.color-3 {
+  background: var(--green-color);
+  @include gradient(#26B748, #26B781);
+}
+
+.color-4 {
+  background: var(--red-color);
+  @include gradient(#FF474E, #FFAA47);
+}
+
+
+
+$black-87-opacity: rgba(0,0,0,.87);
+$white-87-opacity: rgba(255,255,255,.87);
+
+$mat-ci: (
+  50: lighten($ci-primary, 25%),
+  100: lighten($ci-primary, 20%),
+  200: lighten($ci-primary, 15%),
+  300: lighten($ci-primary, 10%),
+  400: lighten($ci-primary, 5%),
+  500: $ci-primary,
+  600: darken($ci-primary, 5%),
+  700: darken($ci-primary, 10%),
+  800: darken($ci-primary, 15%),
+  900: darken($ci-primary, 20%),
+  A100: #ff80ab,
+  A200: #ff4081,
+  A400: #f50057,
+  A700: #c51162,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);

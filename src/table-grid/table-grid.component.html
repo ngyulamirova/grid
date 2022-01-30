@@ -1,0 +1,30 @@
+<ng-container *ngIf="allData$ | async"></ng-container>
+<ng-container *ngIf="addingData$ | async"></ng-container>
+<ng-container *ngIf="changeCellProps$ | async"></ng-container>
+<dts-select-container>
+  <ag-grid-angular class="container ag-theme-alpine"
+                   appSelectCells
+                   [metrics]="metrics"
+                   [attr.data-qa]="'dataTable'"
+                   [cellParams]="cellParams"
+                   [gridOptions]="gridOptions"
+                   [loadingOverlayComponent]="loadingOverlayComponent"
+                   [selectedCells] = "selectedCells"
+                   (cellClicked)="chooseRowAction($event)"
+                   (cellEditingStarted)="checkIfEditingIsPossible($event)"
+                   (selectedDataChange) = "selectCells($event)"
+                   (cellValueChanged)="cellValueChanged($event)"
+                   (sortChanged)="delSortParams()"
+                   (firstDataRendered)="resizeGrid()"
+                   (cellMouseDown)="cellMouseDownSelected = $event"
+                   [(cellMouseDownSelected)]="cellMouseDownSelected">
+  </ag-grid-angular>
+</dts-select-container>
+
+<nz-modal
+  nzCentered
+  [(nzVisible)]="modalData"
+  [nzFooter]="null"
+  (nzOnCancel)="modalData = null">
+dfdfg
+</nz-modal>
